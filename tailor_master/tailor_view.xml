@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+	
+			<!-- Form view of Tailor Master -->
+			<record id="view_form_tmaster" model="ir.ui.view">
+				<field name="name">view.form.tmaster</field>
+				<field name="model">tmaster.model</field>
+				<field name="arch" type="xml">
+					<form string="" version="8.0">
+						<sheet>
+							<group>
+                        		<h1>
+                                	<field name="name" required="1" placeholder="Either choose One or Create New Customer" help="Customer Name"/>
+                            	</h1>
+                    		</group>
+							<separator string ="Order" colspan="4"/>
+							<group colspan="4" col="6">
+								<field name="order"/>
+								<field name="dealer"/>
+								<field name="choose" widget="selection"/>
+								<field name="odate"/>
+								<field name="pdate"/>
+								<field name="active"/>
+								<field name="shirt"/>
+								<field name="kurta"/>
+								<field name="trouser"/>
+								<field name="monogram"/>
+								<field name="oversize"/>
+							</group>
+							<group colspan="4" col="2">
+								<field name="fitting" widget="selection"/>
+							</group>
+							<separator string ="Size" colspan="4"/>
+							<group colspan="4" col="4">
+								<field name="neck"/>
+								<field name="tail"/>
+								<field name="chest"/>
+								<field name="yoke"/>
+								<field name="waist"/>
+								<field name="hip"/>
+								<field name="lsleeve"/>
+								<field name="rsleeve"/>
+								<field name="lwrist"/>
+								<field name="rwrist"/>
+							</group>
+							<group colspan="4" col="2">
+								<field name="dneck" widget="selection"/>
+								<field name="dsleeve" widget="selection"/>
+								<field name="dpocket" widget="selection"/>
+								<field name="dfront" widget="selection"/>
+								<field name="dback" widget="selection"/>
+							</group>
+						</sheet>
+					</form>
+				</field>
+			</record>
+			
+
+			<!-- Tree view of Tailor Master -->
+			<record id="view_tree_tmaster" model="ir.ui.view">
+				<field name="name">view.tree.tmaster</field>
+				<field name="model">tmaster.model</field>
+				<field name="arch" type="xml">
+					<tree string="Measurements">
+						<field name="name"/>
+						<field name="active"/>
+					</tree>
+				</field>
+			</record>
+
+			<!-- Calendar View of Tailor Master -->
+	<record id="view_calendar_tmaster" model="ir.ui.view">
+		<field name="name">view.calendar.tmaster</field>
+		<field name="model">tmaster.model</field>
+		<field name="arch" type="xml">
+			<calendar string="Tailor Master" date_start="odate" date_stop="pdate" color="name" event_open_popup="$(action_tmaster)d">
+				<field name="name"/>
+			</calendar>
+		</field>
+	</record>
+	
+
+			<!-- Action of Tailor Master-->
+			<record id="action_tmaster" model="ir.actions.act_window">   
+				<field name="name">Records</field>
+				<field name="res_model">tmaster.model</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form,calendar</field>
+			</record>
+			
+			<menuitem id="menu_tailor" name="Tailor"/>
+			<menuitem id="measurements" name="Measurements" parent="menu_tailor"/>
+			<menuitem id="record" action="action_tmaster" parent="measurements"/>
+			<menuitem id="base.menu_sales" name="Sales Order" parent="menu_tailor"/>
+			<menuitem id="base.menu_product" name="Products" parent="menu_tailor"/>
+			
+         
+	</data>
+</openerp>
